@@ -34,7 +34,7 @@ def get_redirecturl(request):
     p = urlparse(nexturl)
     if p.netloc:
         site = get_current_site().domain
-        if not p.netloc.replace('www.', '') == site.replace('www.', ''):
+        if p.netloc.replace('www.', '') != site.replace('www.', ''):
             logger.info('非法url:' + nexturl)
             return "/"
     return nexturl
@@ -127,9 +127,9 @@ def authorize(request):
 def emailconfirm(request, id, sign):
     if not sign:
         return HttpResponseForbidden()
-    if not get_sha256(settings.SECRET_KEY +
-                      str(id) +
-                      settings.SECRET_KEY).upper() == sign.upper():
+    if get_sha256(settings.SECRET_KEY +
+                  str(id) +
+                  settings.SECRET_KEY).upper() != sign.upper():
         return HttpResponseForbidden()
     oauthuser = get_object_or_404(OAuthUser, pk=id)
     with transaction.atomic():

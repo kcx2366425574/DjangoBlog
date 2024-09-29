@@ -82,7 +82,7 @@ python manage.py create_testdata
 ```
 
 ### 收集静态文件
-终端下执行:  
+终端下执行: 
 ```bash
 python manage.py collectstatic --noinput
 python manage.py compress --force
@@ -104,8 +104,8 @@ python manage.py compress --force
 
 
 ## 更多配置:
-[更多配置介绍](/docs/config.md)  
-[集成elasticsearch](/docs/es.md)
+[更多配置介绍](./docs/config.md)  
+[集成elasticsearch](./docs/es.md)
 
 ## 问题相关
 

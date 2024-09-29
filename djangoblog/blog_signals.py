@@ -56,7 +56,7 @@ def oauth_user_login_signal_handler(sender, **kwargs):
     id = kwargs['id']
     oauthuser = OAuthUser.objects.get(id=id)
     site = get_current_site().domain
-    if oauthuser.picture and not oauthuser.picture.find(site) >= 0:
+    if oauthuser.picture and oauthuser.picture.find(site) < 0:
         from djangoblog.utils import save_user_avatar
         oauthuser.picture = save_user_avatar(oauthuser.picture)
         oauthuser.save()
